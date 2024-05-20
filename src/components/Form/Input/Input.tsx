@@ -1,27 +1,5 @@
 import styled from "styled-components";
-
-const inputs = [
-    {
-        label: "날짜",
-        placeholder: "지출 날짜",
-        name: "date",
-    },
-    {
-        label: "항목",
-        placeholder: "지출 항목",
-        name: "category",
-    },
-    {
-        label: "금액",
-        placeholder: "지출 금액",
-        name: "costs",
-    },
-    {
-        label: "내용",
-        placeholder: "지출 내용",
-        name: "contents",
-    },
-];
+import inputs from "../../../data/inputs";
 
 const StyledDiv = styled.div`
     position: relative;

@@ -69,25 +69,25 @@ function Form() {
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
         const date = formData.get("date")?.toString();
-        const category = formData.get("category")?.toString();
-        const costs = formData.get("costs")?.toString();
-        const contents = formData.get("contents")?.toString();
+        const item = formData.get("item")?.toString();
+        const amount = formData.get("amount")?.toString();
+        const description = formData.get("description")?.toString();
 
-        if (!date || !category || !costs || !contents) return;
+        if (!date || !item || !amount || !description) return;
 
         if (
             !date?.trim() ||
-            !category?.trim() ||
-            !costs?.trim() ||
-            !contents?.trim()
+            !item?.trim() ||
+            !amount?.trim() ||
+            !description?.trim()
         ) {
             alert("내용을 입력해 주세요!");
         }
         const newLedger = {
             date,
-            category,
-            costs,
-            contents,
+            item,
+            amount,
+            description,
         };
 
         console.log(newLedger);
