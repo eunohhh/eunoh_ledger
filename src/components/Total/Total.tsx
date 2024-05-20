@@ -5,7 +5,7 @@ const StyledSection = styled.section`
     display: grid;
     width: 100%;
     height: 20vh;
-    background-color: rgb(222, 222, 222);
+    background-color: white;
     border-radius: 5px;
 `;
 

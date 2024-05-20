@@ -9,7 +9,7 @@ const StyledSection = styled.section`
     justify-items: center;
     width: 100%;
     height: 20vh;
-    background-color: rgb(222, 222, 222);
+    background-color: white;
     border-radius: 5px;
 
     & > div {
@@ -21,18 +21,29 @@ const StyledSection = styled.section`
         width: 80px;
         height: 50px;
         border-radius: 5px;
-        background-color: white;
+        background-color: #f5f5f5;
         cursor: pointer;
+    }
+    div:hover {
+        background-color: var(--button-bg-color);
     }
 `;
 
 const calenderArray = Array.from({ length: 12 }, (_, i) => i + 1);
 
-function Calender() {
+type CalenderProps = {
+    selectMonth: (arg: number) => void;
+};
+
+function Calender({ selectMonth }: CalenderProps) {
     return (
         <StyledSection>
             {calenderArray.map((calender, idx) => (
-                <div key={idx} id={String(calender)}>{`${calender}월`}</div>
+                <div
+                    key={idx}
+                    id={String(calender)}
+                    onClick={() => selectMonth(calender)}
+                >{`${calender}월`}</div>
             ))}
         </StyledSection>
     );

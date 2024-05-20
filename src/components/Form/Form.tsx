@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
+import { Expend } from "../../types/d";
 import Input from "./Input";
 
 const InputSection = styled.section`
@@ -8,7 +10,7 @@ const InputSection = styled.section`
     justify-content: center;
     align-items: center;
     height: 8vh;
-    background-color: rgb(222, 222, 222);
+    background-color: white;
     color: rgb(79, 79, 79);
     border-radius: 5px;
     box-sizing: border-box;
@@ -60,7 +62,11 @@ const StyledDiv = styled.div`
     }
 `;
 
-function Form() {
+type FormProps = {
+    addExpend: (arg: Expend) => void;
+};
+
+function Form({ addExpend }: FormProps) {
     // 폼 서브밋 핸들러
     // 인풋핸들러에서 설정된 투두 객체를 투두스 배열에 추가
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -84,14 +90,17 @@ function Form() {
             alert("내용을 입력해 주세요!");
         }
         const newLedger = {
+            id: uuidv4(),
             date,
             item,
-            amount,
+            amount: Number(amount),
             description,
         };
 
         console.log(newLedger);
         // dispatch(addToDo(newTodo));
+
+        addExpend(newLedger);
 
         // 추가하고 나면 폼 리셋 시키기!!
         form.reset();
