@@ -37,9 +37,11 @@ const StyledUl = styled.ul`
         overflow: hidden;
         text-overflow: ellipsis;
         color: blue;
+        font-weight: bold;
     }
     div:nth-child(2) p {
         color: blue;
+        font-weight: bold;
     }
 `;
 

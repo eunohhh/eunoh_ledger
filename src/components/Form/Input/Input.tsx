@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        width: 25%;
+        min-width: 120px;
     }
 
     input {
@@ -24,8 +24,11 @@ const StyledDiv = styled.div`
         font-family: inherit;
         padding: 0.25em 0.5em;
         background-color: #fff;
-        border: 2px solid var(--input-border);
+        border: 1px solid rgb(221, 221, 221);
         border-radius: 4px;
+    }
+    label {
+        text-align: left;
     }
 `;
 
