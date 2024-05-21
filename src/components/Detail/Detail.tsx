@@ -1,6 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { ChangeEvent, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import inputs from "../../data/inputs";
+import { Expend } from "../../types/d";
 
 const StyledDiv = styled.div`
     max-width: 800px;
@@ -66,8 +68,51 @@ const StyledButtonDiv = styled.div`
     }
 `;
 
-function Detail() {
+type DetailState = {
+    deleteExpend: (arg: string) => void;
+    updateExpend: (arg: Expend) => void;
+};
+
+function Detail({ deleteExpend, updateExpend }: DetailState) {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { expend }: { expend: Expend } = location.state;
+    const [inputValues, setInputValues] = useState<[string, string][]>(
+        Object.entries(expend)
+    );
+
+    const values = Object.values(expend);
+
+    const inputRef = useRef<HTMLInputElement[]>([]);
+
+    const handleUpdateClick = () => {
+        const newExpend = Object.fromEntries(
+            inputValues.map(([key, value]) => [key, value])
+        );
+        updateExpend(newExpend as unknown as Expend);
+        navigate("/");
+    };
+
+    const handleDeleteClick = () => {
+        deleteExpend(expend.id);
+        navigate("/");
+    };
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const name = e.currentTarget.name;
+        const val = e.currentTarget.value;
+
+        setInputValues((prev) => {
+            return prev.map(([key, value]) => {
+                if (key === name) {
+                    return [key, val];
+                }
+                return [key, value];
+            });
+        });
+    };
+
+    // console.log(inputValues);
 
     return (
         <StyledDiv>
@@ -75,16 +120,19 @@ function Detail() {
                 <StyledInnerDiv key={idx}>
                     <label htmlFor={input.name}>{input.label}</label>
                     <input
+                        onChange={handleChange}
                         type="text"
                         name={input.name}
-                        placeholder={input.placeholder}
+                        value={inputValues[idx + 1][1]}
+                        placeholder={values[idx + 1]}
                         required
+                        ref={(ele) => ele && inputRef.current.push(ele)}
                     ></input>
                 </StyledInnerDiv>
             ))}
             <StyledButtonDiv>
-                <button>수정</button>
-                <button>삭제</button>
+                <button onClick={handleUpdateClick}>수정</button>
+                <button onClick={handleDeleteClick}>삭제</button>
                 <button onClick={() => navigate("/")}>뒤로 가기</button>
             </StyledButtonDiv>
         </StyledDiv>

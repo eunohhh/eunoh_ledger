@@ -4,4 +4,5 @@ export interface Expend {
     item: string;
     amount: number;
     description: string;
+    day?: number;
 }

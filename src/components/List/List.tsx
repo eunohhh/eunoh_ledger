@@ -23,17 +23,18 @@ const StyledLink = styled(Link)`
 
 type ListProps = {
     monthlyExpends: Expend[];
-    deleteExpend: (arg: string) => void;
-    updateExpend: (arg: Expend) => void;
+    month: number;
 };
 
 function List({ monthlyExpends }: ListProps) {
-    console.log(monthlyExpends);
-
     return (
         <StyledSection>
             {monthlyExpends.map((expend) => (
-                <StyledLink key={expend.id} to={`/detail/${expend.id}`}>
+                <StyledLink
+                    key={expend.id}
+                    to={`/detail/${expend.id}`}
+                    state={{ expend }}
+                >
                     <Card expend={expend} />
                 </StyledLink>
             ))}

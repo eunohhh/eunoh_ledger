@@ -7,30 +7,24 @@ import Total from "../Total";
 
 type LedgerContainerProps = {
     monthlyExpends: Expend[];
+    month: number;
     selectMonth: (arg: number) => void;
     addExpend: (arg: Expend) => void;
-    deleteExpend: (arg: string) => void;
-    updateExpend: (arg: Expend) => void;
 };
 
 function LedgerContainer({
+    month,
     monthlyExpends,
     selectMonth,
     addExpend,
-    deleteExpend,
-    updateExpend,
 }: LedgerContainerProps) {
     return (
         <>
             <Header />
             <Form addExpend={addExpend} />
-            <Calender selectMonth={selectMonth} />
-            <Total />
-            <List
-                monthlyExpends={monthlyExpends}
-                deleteExpend={deleteExpend}
-                updateExpend={updateExpend}
-            />
+            <Calender selectMonth={selectMonth} month={month} />
+            <Total monthlyExpends={monthlyExpends} month={month} />
+            <List monthlyExpends={monthlyExpends} month={month} />
         </>
     );
 }
