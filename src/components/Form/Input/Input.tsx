@@ -39,7 +39,7 @@ function Input() {
                 <div key={idx}>
                     <label htmlFor={input.name}>{input.label}</label>
                     <input
-                        type="text"
+                        type={input.type}
                         name={input.name}
                         placeholder={input.placeholder}
                         required

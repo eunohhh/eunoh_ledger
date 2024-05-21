@@ -40,6 +40,7 @@ const StyledUl = styled.ul`
     }
     div:nth-child(2) p {
         color: blue;
+        font-weight: bold;
     }
 `;
 
