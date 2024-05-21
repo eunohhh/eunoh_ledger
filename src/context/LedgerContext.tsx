@@ -39,10 +39,15 @@ export const LedgerProvider = ({ children }: Props) => {
         .filter((expend) => {
             const dateStr = expend.date;
             const _month = parseInt(dateStr.split("-")[1], 10);
-            const _day = parseInt(dateStr.split("-")[2], 10);
-            expend.day = _day;
+            // const _day = parseInt(dateStr.split("-")[2], 10);
+            // expend.day = _day;
             return _month === month;
         })
+        // 이게 왜 ?????
+        .map((expend) => ({
+            ...expend,
+            day: parseInt(expend.date.split("-")[2], 10),
+        }))
         .sort((a, b) => {
             if (a.day === undefined && b.day === undefined) {
                 return 0;
