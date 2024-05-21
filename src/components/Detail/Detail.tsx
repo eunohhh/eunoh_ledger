@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import inputs from "../../data/inputs";
 
@@ -66,6 +67,8 @@ const StyledButtonDiv = styled.div`
 `;
 
 function Detail() {
+    const navigate = useNavigate();
+
     return (
         <StyledDiv>
             {inputs.map((input, idx) => (
@@ -82,7 +85,7 @@ function Detail() {
             <StyledButtonDiv>
                 <button>수정</button>
                 <button>삭제</button>
-                <button>뒤로 가기</button>
+                <button onClick={() => navigate("/")}>뒤로 가기</button>
             </StyledButtonDiv>
         </StyledDiv>
     );
