@@ -9,7 +9,7 @@ const inputs = [
         label: "항목",
         placeholder: "지출 항목",
         name: "item",
-        type: "text",
+        type: "select",
     },
     {
         label: "금액",

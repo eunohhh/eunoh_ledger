@@ -94,8 +94,12 @@ function Detail({ deleteExpend, updateExpend }: DetailState) {
     };
 
     const handleDeleteClick = () => {
-        deleteExpend(expend.id);
-        navigate("/");
+        if (confirm("정말 삭제하실 겁니까?")) {
+            deleteExpend(expend.id);
+            navigate("/");
+        } else {
+            return;
+        }
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

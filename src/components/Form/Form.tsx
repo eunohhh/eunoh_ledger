@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { Expend } from "../../types/d";
+import isValidDate from "../../utils/isValidDate";
 import Input from "./Input";
 
 const InputSection = styled.section`
@@ -76,19 +77,33 @@ function Form({ addExpend }: FormProps) {
         const formData = new FormData(form);
         const date = formData.get("date")?.toString();
         const item = formData.get("item")?.toString();
-        const amount = formData.get("amount")?.toString();
+        const amount = formData.get("amount");
         const description = formData.get("description")?.toString();
+
+        const amountNumber = Number(amount);
 
         if (!date || !item || !amount || !description) return;
 
         if (
             !date?.trim() ||
             !item?.trim() ||
-            !amount?.trim() ||
+            !amount?.toString().trim() ||
             !description?.trim()
         ) {
             alert("내용을 입력해 주세요!");
+            return;
         }
+
+        if (!isValidDate(date)) {
+            alert("날짜 유효한지 확인해 주세요!");
+            return;
+        }
+
+        if (isNaN(amountNumber) || amountNumber < 0) {
+            alert("왜 그런 금액 입력하는 것임??");
+            return;
+        }
+
         const newLedger = {
             id: uuidv4(),
             date,
