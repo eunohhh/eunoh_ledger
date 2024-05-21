@@ -3,6 +3,7 @@ import inputs from "../../data/inputs";
 
 const StyledDiv = styled.div`
     max-width: 800px;
+    width: 100%;
     margin: 0px auto;
     padding: 20px;
     background-color: rgb(255, 255, 255);

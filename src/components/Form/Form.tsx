@@ -8,7 +8,7 @@ const InputSection = styled.section`
     justify-content: center;
     align-items: center;
     height: 8vh;
-    background-color: rgb(222, 222, 222);
+    background-color: white;
     color: rgb(79, 79, 79);
     border-radius: 5px;
     box-sizing: border-box;

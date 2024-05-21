@@ -5,10 +5,16 @@ const StyledUl = styled.ul`
     display: flex;
     justify-content: space-between;
     width: 90%;
-    height: 3rem;
-    background-color: #ffffff;
+    background-color: rgb(249, 249, 249);
+    padding: 15px 20px;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px #d6d6d6;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+    transition: transform 0.2s ease-in-out 0s;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.02);
+    }
 
     & > div {
         display: flex;
@@ -17,12 +23,20 @@ const StyledUl = styled.ul`
     }
     div:nth-child(1) {
         flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        max-width: 80%;
     }
     div:nth-child(1) p:nth-child(1) {
         color: gray;
     }
     div:nth-child(1) p:nth-child(2) {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         color: blue;
+        font-weight: bold;
     }
     div:nth-child(2) p {
         color: blue;
