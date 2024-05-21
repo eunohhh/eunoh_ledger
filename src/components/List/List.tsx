@@ -1,4 +1,4 @@
-import useLedger from "@/hooks/useLedger";
+import useLedgerRedux from "@/hooks/useLedgerRedux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Card from "../Card";
@@ -22,7 +22,7 @@ const StyledLink = styled(Link)`
 `;
 
 function List() {
-    const { monthlyExpends } = useLedger();
+    const { monthlyExpends } = useLedgerRedux();
 
     return (
         <StyledSection>

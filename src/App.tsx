@@ -1,12 +1,16 @@
+import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
-import { LedgerProvider } from "./context/LedgerContext";
+// import { LedgerProvider } from "./context/LedgerContext";
+import store from "./redux/Store";
 import Router from "./shared/Router";
 
 function App() {
     return (
-        <LedgerProvider>
+        <Provider store={store}>
+            {/* <LedgerProvider> */}
             <RouterProvider router={Router} />
-        </LedgerProvider>
+            {/* </LedgerProvider> */}
+        </Provider>
     );
 }
 

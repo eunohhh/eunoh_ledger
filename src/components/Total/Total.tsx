@@ -1,4 +1,4 @@
-import useLedger from "@/hooks/useLedger";
+import useLedgerRedux from "@/hooks/useLedgerRedux";
 import styled from "styled-components";
 
 const BLUE = `rgb(0, 123, 255)`;
@@ -72,7 +72,7 @@ const StyledAnotDiv = styled.div<{ $index: number }>`
 `;
 
 function Total() {
-    const { monthlyExpends, month } = useLedger();
+    const { monthlyExpends, month } = useLedgerRedux();
 
     const reduced = monthlyExpends.reduce(
         (acc: { [key: string]: number; total: number }, cur) => {

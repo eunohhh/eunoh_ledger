@@ -1,4 +1,4 @@
-import useLedger from "@/hooks/useLedger";
+import useLedgerRedux from "@/hooks/useLedgerRedux";
 import isValidDate from "@/utils/isValidDate";
 import { ChangeEvent, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -78,7 +78,7 @@ const StyledButtonDiv = styled.div`
 `;
 
 function Detail() {
-    const { deleteExpend, updateExpend } = useLedger();
+    const { deleteExpend, updateExpend } = useLedgerRedux();
 
     const navigate = useNavigate();
     const location = useLocation();

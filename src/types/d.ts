@@ -16,3 +16,8 @@ export interface Ledger {
     deleteExpend: (expendId: string) => void;
     updateExpend: (newExpend: Expend) => void;
 }
+
+export interface LedgerState {
+    expends: Expend[];
+    month: number;
+}

@@ -1,4 +1,4 @@
-import useLedger from "@/hooks/useLedger";
+import useLedgerRedux from "@/hooks/useLedgerRedux";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import isValidDate from "../../utils/isValidDate";
@@ -64,7 +64,7 @@ const StyledDiv = styled.div`
 `;
 
 function Form() {
-    const { addExpend } = useLedger();
+    const { addExpend } = useLedgerRedux();
     // 폼 서브밋 핸들러
     // 인풋핸들러에서 설정된 투두 객체를 투두스 배열에 추가
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
