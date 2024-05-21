@@ -41,7 +41,7 @@ export const LedgerProvider = ({ children }: Props) => {
             const _month = parseInt(dateStr.split("-")[1], 10);
             const _day = parseInt(dateStr.split("-")[2], 10);
             expend.day = _day;
-            if (_month === month) return { ...expend };
+            return _month === month;
         })
         .sort((a, b) => {
             if (a.day === undefined && b.day === undefined) {
