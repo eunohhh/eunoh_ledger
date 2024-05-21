@@ -1,5 +1,5 @@
+import useLedger from "@/hooks/useLedger";
 import styled from "styled-components";
-import { Expend } from "../../types/d";
 
 const BLUE = `rgb(0, 123, 255)`;
 const GREEN = `rgb(40, 167, 69)`;
@@ -71,12 +71,9 @@ const StyledAnotDiv = styled.div<{ $index: number }>`
     margin-right: 8px;
 `;
 
-type TotalProps = {
-    monthlyExpends: Expend[];
-    month: number;
-};
+function Total() {
+    const { monthlyExpends, month } = useLedger();
 
-function Total({ monthlyExpends, month }: TotalProps) {
     const reduced = monthlyExpends.reduce(
         (acc: { [key: string]: number; total: number }, cur) => {
             if (!acc[cur.item]) {

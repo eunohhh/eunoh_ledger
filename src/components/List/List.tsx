@@ -1,6 +1,6 @@
+import useLedger from "@/hooks/useLedger";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Expend } from "../../types/d";
 import Card from "../Card";
 
 const StyledSection = styled.section`
@@ -21,12 +21,9 @@ const StyledLink = styled(Link)`
     width: 100%;
 `;
 
-type ListProps = {
-    monthlyExpends: Expend[];
-    month: number;
-};
+function List() {
+    const { monthlyExpends } = useLedger();
 
-function List({ monthlyExpends }: ListProps) {
     return (
         <StyledSection>
             {monthlyExpends.map((expend) => (

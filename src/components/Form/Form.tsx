@@ -1,6 +1,6 @@
+import useLedger from "@/hooks/useLedger";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import { Expend } from "../../types/d";
 import isValidDate from "../../utils/isValidDate";
 import Input from "./Input";
 
@@ -63,11 +63,8 @@ const StyledDiv = styled.div`
     }
 `;
 
-type FormProps = {
-    addExpend: (arg: Expend) => void;
-};
-
-function Form({ addExpend }: FormProps) {
+function Form() {
+    const { addExpend } = useLedger();
     // 폼 서브밋 핸들러
     // 인풋핸들러에서 설정된 투두 객체를 투두스 배열에 추가
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

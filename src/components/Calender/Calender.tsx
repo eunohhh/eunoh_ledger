@@ -1,3 +1,4 @@
+import useLedger from "@/hooks/useLedger";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
@@ -33,12 +34,9 @@ const StyledDiv = styled.div<{ $selected: number; $curr: number }>`
 
 const calenderArray = Array.from({ length: 12 }, (_, i) => i + 1);
 
-type CalenderProps = {
-    selectMonth: (arg: number) => void;
-    month: number;
-};
+function Calender() {
+    const { selectMonth, month } = useLedger();
 
-function Calender({ selectMonth, month }: CalenderProps) {
     return (
         <StyledSection>
             {calenderArray.map((calender, idx) => (

@@ -1,3 +1,4 @@
+import useLedger from "@/hooks/useLedger";
 import isValidDate from "@/utils/isValidDate";
 import { ChangeEvent, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -76,12 +77,9 @@ const StyledButtonDiv = styled.div`
     }
 `;
 
-type DetailState = {
-    deleteExpend: (arg: string) => void;
-    updateExpend: (arg: Expend) => void;
-};
+function Detail() {
+    const { deleteExpend, updateExpend } = useLedger();
 
-function Detail({ deleteExpend, updateExpend }: DetailState) {
     const navigate = useNavigate();
     const location = useLocation();
     const { expend }: { expend: Expend } = location.state;
