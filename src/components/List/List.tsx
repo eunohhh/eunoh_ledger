@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Expend } from "../../types/d";
 import Card from "../Card";
@@ -16,6 +17,10 @@ const StyledSection = styled.section`
     border-radius: 5px;
 `;
 
+const StyledLink = styled(Link)`
+    width: 100%;
+`;
+
 type ListProps = {
     monthlyExpends: Expend[];
     deleteExpend: (arg: string) => void;
@@ -28,7 +33,9 @@ function List({ monthlyExpends }: ListProps) {
     return (
         <StyledSection>
             {monthlyExpends.map((expend) => (
-                <Card key={expend.id} expend={expend} />
+                <StyledLink key={expend.id} to={`/detail/${expend.id}`}>
+                    <Card expend={expend} />
+                </StyledLink>
             ))}
         </StyledSection>
     );

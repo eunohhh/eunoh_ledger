@@ -12,6 +12,7 @@ const StyledUl = styled.ul`
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
     transition: transform 0.2s ease-in-out 0s;
     cursor: pointer;
+    margin: 0 auto;
 
     &:hover {
         transform: scale(1.02);
