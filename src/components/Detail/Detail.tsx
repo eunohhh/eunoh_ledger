@@ -1,3 +1,4 @@
+import isValidDate from "@/utils/isValidDate";
 import { ChangeEvent, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -26,6 +27,13 @@ const StyledInnerDiv = styled.div`
     }
 
     input {
+        padding: 10px;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    select {
         padding: 10px;
         border: 1px solid rgb(221, 221, 221);
         border-radius: 4px;
@@ -83,14 +91,56 @@ function Detail({ deleteExpend, updateExpend }: DetailState) {
 
     const values = Object.values(expend);
 
-    const inputRef = useRef<HTMLInputElement[]>([]);
+    const inputRef = useRef<(HTMLInputElement | HTMLSelectElement)[]>([]);
 
     const handleUpdateClick = () => {
-        const newExpend = Object.fromEntries(
-            inputValues.map(([key, value]) => [key, value])
-        );
-        updateExpend(newExpend as unknown as Expend);
+        // useRef 를 사용하도록 수정
+        const date = inputRef.current[0].value;
+        const day = parseInt(date.split("-")[1], 10);
+        const item = inputRef.current[1].value;
+        const amount = Number(inputRef.current[2].value);
+        const description = inputRef.current[3].value;
+
+        const newExpend = {
+            id: expend.id,
+            date,
+            item,
+            amount,
+            description,
+            day,
+        };
+
+        if (!date || !item || !amount || !description) return;
+
+        if (
+            !date?.trim() ||
+            !item?.trim() ||
+            !amount?.toString().trim() ||
+            !description?.trim()
+        ) {
+            alert("내용을 입력해 주세요!");
+            return;
+        }
+
+        if (!isValidDate(date)) {
+            alert("날짜 유효한지 확인해 주세요!");
+            return;
+        }
+
+        if (isNaN(amount) || amount < 0) {
+            alert("왜 그런 금액 입력하는 것임??");
+            return;
+        }
+
+        updateExpend(newExpend);
         navigate("/");
+
+        // useRef 를 써야 해서 위처럼 했지만 아래처럼 하는게 편하긴 합니다 ㅠㅠ
+        // const newExpend = Object.fromEntries(
+        //     inputValues.map(([key, value]) => [key, value])
+        // );
+        // updateExpend(newExpend as unknown as Expend);
+        // navigate("/");
     };
 
     const handleDeleteClick = () => {
@@ -123,7 +173,29 @@ function Detail({ deleteExpend, updateExpend }: DetailState) {
             {inputs.map((input, idx) => (
                 <StyledInnerDiv key={idx}>
                     <label htmlFor={input.name}>{input.label}</label>
-                    <input
+                    {input.type === "select" ? (
+                        <select
+                            name={input.name}
+                            ref={(ele) => ele && inputRef.current.push(ele)}
+                        >
+                            <option value={"주거"}>주거</option>
+                            <option value={"식비"}>식비</option>
+                            <option value={"의류"}>의류</option>
+                            <option value={"여가"}>여가</option>
+                            <option value={"기타"}>기타</option>
+                        </select>
+                    ) : (
+                        <input
+                            onChange={handleChange}
+                            type="text"
+                            name={input.name}
+                            value={inputValues[idx + 1][1]}
+                            placeholder={values[idx + 1]}
+                            required
+                            ref={(ele) => ele && inputRef.current.push(ele)}
+                        ></input>
+                    )}
+                    {/* <input
                         onChange={handleChange}
                         type="text"
                         name={input.name}
@@ -131,7 +203,7 @@ function Detail({ deleteExpend, updateExpend }: DetailState) {
                         placeholder={values[idx + 1]}
                         required
                         ref={(ele) => ele && inputRef.current.push(ele)}
-                    ></input>
+                    ></input> */}
                 </StyledInnerDiv>
             ))}
             <StyledButtonDiv>
