@@ -1,6 +1,7 @@
 // import { RouterProvider } from "react-router-dom";
 import { useEffect, useState } from "react";
 import fakeData from "./data/fakedata";
+import GlobalStyle from "./globalStyles";
 import Router from "./shared/Router";
 import { Expend } from "./types/d";
 
@@ -56,15 +57,18 @@ function App() {
     }, [month]);
 
     return (
-        <Router
-            // expends={expends}
-            month={month}
-            monthlyExpends={monthlyExpends}
-            selectMonth={selectMonth}
-            addExpend={addExpend}
-            deleteExpend={deleteExpend}
-            updateExpend={updateExpend}
-        />
+        <>
+            <GlobalStyle />
+            <Router
+                // expends={expends}
+                month={month}
+                monthlyExpends={monthlyExpends}
+                selectMonth={selectMonth}
+                addExpend={addExpend}
+                deleteExpend={deleteExpend}
+                updateExpend={updateExpend}
+            />
+        </>
     );
 }
 
