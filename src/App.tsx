@@ -1,12 +1,16 @@
 import { RouterProvider } from "react-router-dom";
 import { LedgerProvider } from "./context/LedgerContext";
+import GlobalStyle from "./globalStyles";
 import Router from "./shared/Router";
 
 function App() {
     return (
-        <LedgerProvider>
-            <RouterProvider router={Router} />
-        </LedgerProvider>
+        <>
+            <GlobalStyle />
+            <LedgerProvider>
+                <RouterProvider router={Router} />
+            </LedgerProvider>
+        </>
     );
 }
 
