@@ -8,7 +8,12 @@ type HomeProps = {
     addExpend: (arg: Expend) => void;
 };
 
-function Home({ month, monthlyExpends, selectMonth, addExpend }: HomeProps) {
+function HomePage({
+    month,
+    monthlyExpends,
+    selectMonth,
+    addExpend,
+}: HomeProps) {
     return (
         <LedgerContainer
             // expends={expends}
@@ -20,4 +25,4 @@ function Home({ month, monthlyExpends, selectMonth, addExpend }: HomeProps) {
     );
 }
 
-export default Home;
+export default HomePage;

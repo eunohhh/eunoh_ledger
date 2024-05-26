@@ -76,12 +76,12 @@ const StyledButtonDiv = styled.div`
     }
 `;
 
-type DetailState = {
+type DetailProps = {
     deleteExpend: (arg: string) => void;
     updateExpend: (arg: Expend) => void;
 };
 
-function Detail({ deleteExpend, updateExpend }: DetailState) {
+function Detail({ deleteExpend, updateExpend }: DetailProps) {
     const navigate = useNavigate();
     const location = useLocation();
     const { expend }: { expend: Expend } = location.state;
