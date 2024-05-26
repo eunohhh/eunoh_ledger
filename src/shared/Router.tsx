@@ -1,7 +1,7 @@
+import DetailPage from "@/pages/DetailPage";
 import { createBrowserRouter } from "react-router-dom";
-import Detail from "../components/Detail";
 import Layout from "../components/Layout";
-import Home from "../pages/Home";
+import HomePage from "../pages/HomePage";
 
 const router = createBrowserRouter([
     {
@@ -9,11 +9,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home />,
+                element: <HomePage />,
             },
             {
                 path: "/detail/:detailId",
-                element: <Detail />,
+                element: <DetailPage />,
                 // loader: ({ params }) => postsListPageLoader(params.postId),
             },
         ],
