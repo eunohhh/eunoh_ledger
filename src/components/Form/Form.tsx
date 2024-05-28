@@ -66,7 +66,8 @@ const StyledDiv = styled.div`
 function Form() {
     const { addExpend } = useLedger();
     // 폼 서브밋 핸들러
-    // 인풋핸들러에서 설정된 투두 객체를 투두스 배열에 추가
+    // 인풋핸들러에서 설정된 가계부 객체를 전체 가계부 배열에 추가
+    // 여기서는 비제어 컴포넌트를 사용
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -108,9 +109,6 @@ function Form() {
             amount: Number(amount),
             description,
         };
-
-        console.log(newLedger);
-        // dispatch(addToDo(newTodo));
 
         addExpend(newLedger);
 
