@@ -25,14 +25,17 @@ export const ledgerSlice = createSlice({
             state.month = action.payload;
             localStorage.setItem("selectedMonth", action.payload.toString());
         },
+        // 가계부 추가
         aExpend: (state, action: PayloadAction<Expend>) => {
             state.expends.push(action.payload);
         },
+        // 가계부 삭제
         delExpend: (state, action: PayloadAction<string>) => {
             state.expends = state.expends.filter(
                 (expend) => expend.id !== action.payload
             );
         },
+        // 가계부 업데이트
         upExpend: (state, action: PayloadAction<Expend>) => {
             state.expends = state.expends.map((expend) =>
                 expend.id === action.payload.id ? action.payload : expend

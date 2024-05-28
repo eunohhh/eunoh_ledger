@@ -74,11 +74,13 @@ const StyledAnotDiv = styled.div<{ $index: number }>`
 function Total() {
     const { monthlyExpends, month } = useLedgerRedux();
 
+    // 그래프를 위해 월별 지출 배열을 가공하여
+    // {total : number, "item" : number, ...} 구조의 객체로 변환
     const reduced = monthlyExpends.reduce(
         (acc: { [key: string]: number; total: number }, cur) => {
-            if (!acc[cur.item]) {
-                acc[cur.item] = 0;
-            }
+            // 순환중 프로퍼티가 없으면 0 으로
+            if (!acc[cur.item]) acc[cur.item] = 0;
+            // 있으면 각 프로퍼티에 더하고, total 에도 더하고
             acc[cur.item] += cur.amount;
             acc.total += cur.amount;
 
@@ -87,21 +89,25 @@ function Total() {
         { total: 0 }
     );
 
+    // 위에서 만든 가공된 전체 지출 객체를 그래프 표시용 배열로 변환 Object.values
+    // map 으로 index 1번 부터(토탈제외) 소수2자리까지 표시 백분율 계산
+    // 내림차순 정렬
     const graphArray = Object.values(reduced)
         .map((amount, idx, array) =>
             idx > 0 ? Number(((amount / array[0]) * 100).toFixed(2)) : amount
         )
         .sort((a, b) => b - a);
 
+    // 위에서 만든 가공된 전체 지출 객체를 그래프 하단 항목 표시용 배열로 변환 Object.entries
+    // 토탈은 filter 로 없애고
+    // 내림차순 정렬
+    // map 으로 리턴 형태를 [ key, value, 백분율값] 로 만듬
     const anotArray = Object.entries(reduced)
         .filter((_, idx) => idx !== 0)
         .sort((a, b) => b[1] - a[1])
         .map((anot, idx) => {
             return [...anot, graphArray[idx + 1]];
         });
-
-    // console.log(monthlyExpends);
-    // console.log(anotArray);
 
     return (
         <StyledSection>
