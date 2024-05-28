@@ -1,4 +1,8 @@
-import LedgerContainer from "../components/LedgerContainer";
+import Calender from "@/components/Calender";
+import Form from "@/components/Form";
+import Header from "@/components/Header";
+import List from "@/components/List";
+import Total from "@/components/Total";
 import { Expend } from "../types/d";
 
 type HomeProps = {
@@ -15,13 +19,13 @@ function HomePage({
     addExpend,
 }: HomeProps) {
     return (
-        <LedgerContainer
-            // expends={expends}
-            month={month}
-            monthlyExpends={monthlyExpends}
-            selectMonth={selectMonth}
-            addExpend={addExpend}
-        ></LedgerContainer>
+        <>
+            <Header />
+            <Form addExpend={addExpend} />
+            <Calender selectMonth={selectMonth} month={month} />
+            <Total monthlyExpends={monthlyExpends} month={month} />
+            <List monthlyExpends={monthlyExpends} month={month} />
+        </>
     );
 }
 

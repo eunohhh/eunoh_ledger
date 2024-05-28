@@ -1,9 +1,9 @@
-import { Expend } from "../../types/d";
-import Calender from "../Calender";
-import Form from "../Form";
-import Header from "../Header";
-import List from "../List";
-import Total from "../Total";
+import Calender from "../../src/components/Calender";
+import Form from "../../src/components/Form";
+import Header from "../../src/components/Header";
+import List from "../../src/components/List";
+import Total from "../../src/components/Total";
+import { Expend } from "../../src/types/d";
 
 type LedgerContainerProps = {
     monthlyExpends: Expend[];
