@@ -5,7 +5,6 @@ import HomePage from "../pages/HomePage";
 import { Expend } from "../types/d";
 
 type RouterProps = {
-    // expends: Expend[];
     monthlyExpends: Expend[];
     month: number;
     selectMonth: (arg: number) => void;
@@ -31,7 +30,6 @@ function Router({
                         path="/"
                         element={
                             <HomePage
-                                // expends={expends}
                                 month={month}
                                 monthlyExpends={monthlyExpends}
                                 selectMonth={selectMonth}

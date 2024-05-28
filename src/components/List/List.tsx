@@ -26,6 +26,7 @@ type ListProps = {
     month: number;
 };
 
+// Link의 state 기능 사용해서 디테일로 state(props) 처럼 전달
 function List({ monthlyExpends }: ListProps) {
     return (
         <StyledSection>

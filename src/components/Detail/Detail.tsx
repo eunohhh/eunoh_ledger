@@ -82,14 +82,15 @@ type DetailProps = {
 };
 
 function Detail({ deleteExpend, updateExpend }: DetailProps) {
+    // navigate 는 수정 삭제 돌아가기 시 홈으로 돌려보내기 위해
+    // location 은 List 에서 쏴준 데이터 받기 위해
+    // state는 제어 컴포넌트를 위해
     const navigate = useNavigate();
     const location = useLocation();
     const { expend }: { expend: Expend } = location.state;
     const [inputValues, setInputValues] = useState<[string, string][]>(
         Object.entries(expend)
     );
-
-    const values = Object.values(expend);
 
     const inputRef = useRef<(HTMLInputElement | HTMLSelectElement)[]>([]);
 
@@ -152,6 +153,7 @@ function Detail({ deleteExpend, updateExpend }: DetailProps) {
         }
     };
 
+    // 제어 컴포넌트를 위해 onChange 시 값 바꿔줌
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const name = e.currentTarget.name;
         const val = e.currentTarget.value;
@@ -166,8 +168,6 @@ function Detail({ deleteExpend, updateExpend }: DetailProps) {
         });
     };
 
-    // console.log(inputValues);
-
     return (
         <StyledDiv>
             {inputs.map((input, idx) => (
@@ -178,11 +178,36 @@ function Detail({ deleteExpend, updateExpend }: DetailProps) {
                             name={input.name}
                             ref={(ele) => ele && inputRef.current.push(ele)}
                         >
-                            <option value={"주거"}>주거</option>
-                            <option value={"식비"}>식비</option>
-                            <option value={"의류"}>의류</option>
-                            <option value={"여가"}>여가</option>
-                            <option value={"기타"}>기타</option>
+                            <option
+                                value={"주거"}
+                                selected={inputValues[2][1] === "주거"}
+                            >
+                                주거
+                            </option>
+                            <option
+                                value={"식비"}
+                                selected={inputValues[2][1] === "식비"}
+                            >
+                                식비
+                            </option>
+                            <option
+                                value={"의류"}
+                                selected={inputValues[2][1] === "의류"}
+                            >
+                                의류
+                            </option>
+                            <option
+                                value={"여가"}
+                                selected={inputValues[2][1] === "여가"}
+                            >
+                                여가
+                            </option>
+                            <option
+                                value={"기타"}
+                                selected={inputValues[2][1] === "기타"}
+                            >
+                                기타
+                            </option>
                         </select>
                     ) : (
                         <input
@@ -190,20 +215,11 @@ function Detail({ deleteExpend, updateExpend }: DetailProps) {
                             type="text"
                             name={input.name}
                             value={inputValues[idx + 1][1]}
-                            placeholder={values[idx + 1]}
+                            placeholder={inputValues[idx + 1][1]}
                             required
                             ref={(ele) => ele && inputRef.current.push(ele)}
                         ></input>
                     )}
-                    {/* <input
-                        onChange={handleChange}
-                        type="text"
-                        name={input.name}
-                        value={inputValues[idx + 1][1]}
-                        placeholder={values[idx + 1]}
-                        required
-                        ref={(ele) => ele && inputRef.current.push(ele)}
-                    ></input> */}
                 </StyledInnerDiv>
             ))}
             <StyledButtonDiv>
