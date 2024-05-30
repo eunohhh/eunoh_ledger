@@ -71,7 +71,6 @@ function App() {
         <>
             <GlobalStyle />
             <Router
-                // expends={expends}
                 month={month}
                 monthlyExpends={monthlyExpends}
                 selectMonth={selectMonth}
